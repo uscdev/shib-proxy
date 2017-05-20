@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  shibboleth-nginx:
+    image: virtualstaticvoid/shibboleth-nginx
+    environment:
+      - CLIENT_APP_SCHEME=https
+      - CLIENT_APP_HOSTNAME=your-app.localdomain.com
+      - NGINX_PROXY_DESTINATION=http://shib-test-site:80
+      - CLIENT_APP_SECURE_PATH=/
+    volumes:
+      - /home/dcorley/workspace/github/uscdev/shibboleth/shibboleth-nginx/shibboleth:/etc/shibboleth
+#      - /home/dcorley/workspace/github/uscdev/shibboleth/shibboleth-nginx/nginx:/etc/nginx
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      web-bus:
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+networks:
+  web-bus:
+    external:
+      name: web-bus
