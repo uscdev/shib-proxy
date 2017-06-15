@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  shibboleth-nginx:
+  shib-proxy:
     image: uscdev/shib-proxy
     environment:
       - CLIENT_APP_SCHEME=https

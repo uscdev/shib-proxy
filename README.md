@@ -14,10 +14,9 @@ It expects our standard container environment:
   ````
 - An overlay network at web-bus
   ````bash
-  docker network create --driver overlay web-bus
+  docker network create --driver overlay proxy
   ````
-- Your proxied web application running on port 80, preferably
-on the web-bus private overlay network.
+- Your proxied web application running on a private overlay network.
 (For an example see [uscdev/shib-test-site](https://hub.docker.com/r/uscdev/shib-test-site/))
 - Start your container using the standard stack command:
   ````bash
